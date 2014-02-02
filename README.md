@@ -51,7 +51,7 @@ Boot the vm in the background.
 
     $ vagrant up
 
-Connect to the vm in a terminal session. Vagrant sets up a shared folder `/vagrant` that appears to the vm just like the `hello-vagrant/` project folder.
+Connect to the vm in a terminal session. Vagrant sets up a shared folder `/vagrant` that appears to the vm just like the `hello-vagrant` project folder.
 
     $ vagrant ssh
 
