@@ -2,7 +2,7 @@
 
 # ABOUT
 
-hello-vagrant presents a small Vagrant project for newbies to Vagrant, a way to shrink-wrap applications into a standalone, reusable environment. In this demonstration, users setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
+hello-vagrant presents a small demo project for newbies to Vagrant, a tool for shrink-wrapping and version controlling reusable, per-application environments. In the demo, users setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
 
 # REQUIREMENTS
 
