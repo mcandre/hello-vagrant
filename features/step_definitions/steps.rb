@@ -3,6 +3,6 @@ Given(/^the program has finished$/) do
   @cucumber = `./hello`
 end
 
-Then(/^the output is hello world$/) do
+Then(/^the output is hello vagrant$/) do
   @cucumber.chop.should == 'Hello Vagrant!'
 end
