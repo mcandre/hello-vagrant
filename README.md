@@ -59,7 +59,7 @@ You might have used vm's before, they're handy for running Linux inside of Windo
 
 Vagrant takes the vm idea one step further, encouring vm use for each application. This might sound like overkill for small programs like Hello app, but as apps and their resource needs grow, isolating them in vms is a good way to keep them maintainable and interoperable--if app A needs version X but app B needs version Y, that's okay. It's like they live in entirely different worlds.
 
-# DEMO
+# DEMO BY LUNCH
 
 Step one is downloading a base vm. At YelloSoft Co. & Co., our applications will start with a layer of Ubuntu and build on top.
 
