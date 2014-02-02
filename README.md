@@ -2,62 +2,22 @@
 
 # ABOUT
 
-hello-vagrant presents a small Vagrant project for Vagrant newbies. In this demonstration, users prepare and use a virtual development environment for `hello`, a C application printing `Hello Vagrant!`.
-
-## Project Files in `hello-vagrant/`
-
-`hello.c` - It all starts with the source code for the Hello Vagrant, a pretend C application you want to develop and deploy.
-
-`Makefile` - Build script for compiling and running Hello Vagrant. By automating the build steps, we ensure that compilation is easy, fast, and reproducible. An optional build step, `make lint`, runs additional software analysis tools to improve the source code.
-
-For Hello Vagrant, a Makefile may be overkill, but in larger applications, a good build system is worth its weight in bitcoins.
-
-`bootstrap.sh` - Environment setup script for provisioning the required software development tools: `gcc`, `make`, `splint`. The faster and easier setting up the dev environment, the faster and easier it is for developers to join the project. If any databases or other complex setups are required, installation steps can be written here once, and reused many times.
-
-For more advanced environment setup scripts, Vagrant also works with [Chef](http://www.getchef.com/chef/) and [Puppet](http://puppetlabs.com/).
-
-`Vagrantfile` - High level configuration for a Ubuntu-based virtual machine (vm). Developers, testers, and system administrators can all sync on a single environment for the application, regardless of their host operating system.
-
-VM settings like memory size and [port forwarding](https://docs.vagrantup.com/v2/networking/forwarded_ports.html) can also be added here.
-
-`.gitignore` - A list of file patterns to exclude from version control. We exclude the `.vagrant/` directory that Vagrant uses for internal data, and the compiled unix executable `hello`.
-
-## Environment Flexibility
-
-Notice that the development environment for Hello Vagrant is not OS-agnostic, but very Unix-centric. By constraining ourselves to a single platform, we reduce time spent on OS and editor wars. A `Vagrantfile` can help a large team synchronize on many environment details, in a format relatively computer- and human-friendly. We could have actually chosen a very Windows-centric environment, with Visual Studio tools instead of gcc--it's all gravy for the individual, who may run the Vagrant vm from Windows, Mac, or Linux.
-
-As a bonus, Vagrant mirrors project files into the vm as a shared folder, `/vagrant`. Users can write the source code files with any text editor outside of Vagrant, and build/test/deploy in Vagrant. If one team member likes Visual Studio and another likes Vim, that's fine.
-
-If OS-agnosticism is important in the product, Vagrant can help with that, too. Just write a `Vagrantfile` for each OS port of the application. You can either provide separate build scripts for each Vagrant environment, or write a universal build script and share it to both!
+hello-vagrant presents a small Vagrant project for Vagrant newbies. In this demonstration, users setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
 
 # REQUIREMENTS
 
 * [Vagrant](http://www.vagrantup.com/)
 * [VirtualBox](https://www.virtualbox.org/)
 
-E.g., Mac users can `brew cask install vagrant virtualbox`.
-
 # EXAMPLE
-
-After Vagrant and VirtualBox are installed, use Vagrant to download a pristine, base copy of an Ubuntu Precise 12.04 x64 vm. This may take a little time, based on the size of the vm.
-
-    $ vagrant box add precise64 http://files.vagrantup.com/precise64.box
-
-Construct a vm just for this hello-vagrant project, using `precise64` as a base vm.
-
-    $ vagrant init precise64
 
 Boot the vm in the background.
 
     $ vagrant up
 
-Connect to the vm in a terminal session. Vagrant sets up a shared folder `/vagrant` that appears to the vm just like the `hello-vagrant` project folder.
+Connect to the vm in a terminal session.
 
     $ vagrant ssh
-
-    vagrant@precise64:/vagrant$ ls -A
-    hello    Makefile   .vagrant
-    bootstrap.sh   .gitignore  hello.c  README.md  Vagrantfile.bash_profile  .git
 
 Build and run the Hello Vagrant application.
 
@@ -66,7 +26,7 @@ Build and run the Hello Vagrant application.
     ./hello
     Hello Vagrant!
 
-Optionally, run a linter developer tool over the source code.
+Optionally, run a linter over the source code to run additional checks on the source code.
 
     vagrant@precise64:/vagrant$ make lint
     splint *.c *.h
@@ -83,3 +43,29 @@ Exit the vm terminal session.
 Shutdown the vm.
 
     $ vagrant halt
+
+# DEBRIEF
+
+    vagrant@precise64:/vagrant$ tree
+    .
+    |-- hello
+    |-- hello.c
+    |-- Makefile
+    |-- manifests
+    |   `-- default.pp
+    |-- README.md
+    `-- Vagrantfile
+    
+    1 directory, 6 files
+
+`hello` - We begin with the application you want to develop and deploy (Hello Vagrant!) Sysadmins will want to know which operating system(s), software package(s), and special environment configurations are required in order to install and run the app. Testers will want a clean, standalone way to quickly setup and test the application against their battery of hundreds of stringent quality control tests (It should say "Hello Vagrant!").
+
+`hello.c` - Source code for Hello Vagrant app. Because the app is written in C, someone must decide on a compiler and an operating system. For this project, we chose `gcc` and Ubuntu Linux, and require that all developers, testers, and sysadmins familiarize themselves with Linux (gcc- or Ubuntu-specific knowledge is a bonus skill).
+
+`Makefile` - Build script for Hello Vagrant. This makes it easier for developers to compile the app, something they will be doing very often as they tweak the code. This also reduces the need for other team members to understand `gcc` and C--they just run `make` and the app builds. An optional build step for developers, `make lint`, is offered to keep the source code tidy.
+
+`manifests/default.pp` - Puppet script describing the specific environment required to run Hello Vagrant. In detail, this means `gcc`, `make`, and `splint`, all available in just two packages, `build-essential` and `splint`. We also create a symlink to `.bash_profile` to start the vm user shell in the Hello Vagrant project directory.
+
+`README.md` - Every project should have a README! Try to strike a balance between readability for general audiences and technical depth where necessary. How's the demo going so far?
+
+`Vagrantfile` - High level configuration for a vm made just for the Hello Vagrant app. None of the technical details above are particularly relevant to anyone; we just run `vagrant up` and do our jobs. But if we didn't use Vagrant, ever team member would have to individually learn the nitty gritty details of [yak shaving](http://www.urbandictionary.com/define.php?term=yak%20shaving), wasting many man-months.
