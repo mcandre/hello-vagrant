@@ -2,14 +2,14 @@
 
 # ABOUT
 
-hello-vagrant presents a small Vagrant project for Vagrant newbies. In this demonstration, users setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
+hello-vagrant presents a small Vagrant project for newbies to Vagrant, a way to shrink-wrap applications into a standalone, reusable environment. In this demonstration, users setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
 
 # REQUIREMENTS
 
 * [Vagrant](http://www.vagrantup.com/)
 * [VirtualBox](https://www.virtualbox.org/)
 
-# EXAMPLE
+# DEMO
 
 Boot the vm in the background.
 
@@ -60,7 +60,9 @@ Shutdown the vm.
 
 `hello` - We begin with the application you want to develop and deploy (Hello Vagrant!) Sysadmins will want to know which operating system(s), software package(s), and special environment configurations are required in order to install and run the app. Testers will want a clean, standalone way to quickly setup and test the application against their battery of hundreds of stringent quality control tests (It should say "Hello Vagrant!").
 
-`hello.c` - Source code for Hello Vagrant app. Because the app is written in C, someone must decide on a compiler and an operating system. For this project, we chose `gcc` and Ubuntu Linux, and require that all developers, testers, and sysadmins familiarize themselves with Linux (gcc- or Ubuntu-specific knowledge is a bonus skill).
+`hello.c` - Source code for Hello Vagrant app. Someone decided the app would be written in C, and someone must decide on a compiler and an operating system. For this project, we chose `gcc` and Ubuntu Linux, and require that all developers, testers, and sysadmins familiarize themselves with Linux (gcc- or Ubuntu-specific knowledge is a bonus skill).
+
+We could have decided on Visual Studio tools instead of `gcc`, and Windows instead of Linux. The wonder of Vagrant is that it works for many environments--you can use whatever you need inside the vm, and use whatever you like outside the vm, for your host computer. You can even use your favorite text editor on the project files, because Vagrant mirrors the project into the vm as a shared folder, `/vagrant`.
 
 `Makefile` - Build script for Hello Vagrant. This makes it easier for developers to compile the app, something they will be doing very often as they tweak the code. This also reduces the need for other team members to understand `gcc` and C--they just run `make` and the app builds. An optional build step for developers, `make lint`, is offered to keep the source code tidy.
 
