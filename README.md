@@ -26,7 +26,7 @@ Notice that the development environment for Hello Vagrant is not OS-agnostic, bu
 
 As a bonus, Vagrant mirrors project files into the vm as a shared folder `/vagrant/`. Users can write the source code files with any text editor outside of Vagrant, and build/test/deploy in Vagrant. If one team member likes Visual Studio and another likes Vim, that's fine.
 
-If OS-agnosticism is important in the product, Vagrant can help organize that too. Just write a `Vagrantfile` for each OS port. And either provide separate build scripts for each Vagrant environment, or write an uber build script and share it to both!
+If OS-agnosticism is important in the product, Vagrant can help with that, too. Just write a `Vagrantfile` for each OS port of the application. You can either provide separate build scripts for each Vagrant environment, or write a universal build script and share it to both!
 
 # REQUIREMENTS
 
