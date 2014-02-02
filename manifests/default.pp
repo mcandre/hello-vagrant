@@ -1,3 +1,13 @@
+# User
+
+file { "/home/vagrant/.bash_profile":
+  ensure => link,
+  target => "/vagrant/.bash_profile"
+}
+
+
+# Development
+
 package { "build-essential":
   ensure => present
 }
@@ -10,7 +20,18 @@ package { "splint":
   ensure => present
 }
 
-file { "/home/vagrant/.bash_profile":
-  ensure => link,
-  target => "/vagrant/.bash_profile"
+# Testing
+
+class { "ruby":
+  gems_version  => 'latest'
+}
+
+package { "cucumber":
+  ensure => present,
+  provider => "gem"
+}
+
+package { "rspec":
+  ensure => present,
+  provider => "gem"
 }

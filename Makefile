@@ -1,10 +1,7 @@
 CC=gcc
 FLAGS=-O2 -Wall
 
-all: test
-
-test: hello
-	./hello
+all: hello
 
 hello: hello.c
 	$(CC) $(FLAGS) -o hello hello.c
