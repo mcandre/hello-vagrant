@@ -100,7 +100,7 @@ Developers can write, build, and run the Hello Vagrant application.
     vagrant@precise64:/vagrant$ ./hello
     Hello Vagrant!
 
-Developer Bob prefers another text editor, Emacs. He can edit the source code outside the vm, building and running the app inside the vm. He can use any text editor of his choice this way.
+Developer Bob prefers another text editor, Emacs. He can edit the source code outside the vm, building and running the app inside the vm, using Vagrant's automatic mirroring of project files into the vm as a shared folder, `/vagrant`. He can use any text editor of his choice this way! Which is good, because the Management likes to poke around the code in Notepad for off the cuff "Assurance" inspections against evil Developers.
 
     $ emacs hello.c
     C-x C-c
