@@ -49,11 +49,11 @@ Optionally, run a linter over the source code. For developers, this would help k
 Optionally, run a test suite over the built application. For tests, this keeps the application functional.
 
     vagrant@precise64:/vagrant$ cucumber
-    Feature: Print hello world
+    Feature: Print hello vagrant
     
-      Scenario: Running hello world    # features/print_hello_world.feature:3
-        Given the program has finished # features/step_definitions/steps.rb:1
-        Then the output is hello world # features/step_definitions/steps.rb:6
+      Scenario: Running hello vagrant    # features/print_hello_vagrant.feature:3
+        Given the program has finished   # features/step_definitions/steps.rb:1
+        Then the output is hello vagrant # features/step_definitions/steps.rb:6
     
     1 scenario (1 passed)
     2 steps (2 passed)
