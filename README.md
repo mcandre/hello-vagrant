@@ -194,10 +194,15 @@ Newbie Developer talks to Bob. Bob says, "The *deployment* wasn't even scheduled
 Somehow, the OpenSSH update breaks Hello app, and then a series of carefully planned and highly technical activities occur in sequence ("magic happens").
 
 11:49:00 Ops team modifies `defaults.pp` to update to the new version, passes along the new envirnment to Testing.
+
 11:49:23 Testing runs `vagrant provision`, `vagrant ssh`, `cucumber`, sees the error, passes the error and the modified `defaults.pp` to Developers.
+
 11:59:23 Developers `vagrant provision`, `vagrant ssh`, code until `cucumber` passes, pushes branch `lunchdemo` to Testing.
+
 11:59:30 Testing reruns `cucumber` on the new application build, watches it pass, pushes to Ops.
+
 11:59:59 Ops sees the new tested build, pulls the new app to deployment, runs `vagrant up`.
+
 12:00:00 Sandwiches.
 
     vagrant@precise64:/vagrant$ exit
