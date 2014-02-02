@@ -22,7 +22,7 @@ VM settings like memory size and [port forwarding](https://docs.vagrantup.com/v2
 
 `.gitignore` - A list of file patterns to exclude from version control. We exclude the `.vagrant/` directory that Vagrant uses for internal data, and the compiled unix executable `hello`.
 
-Notice that the development environment for Hello Vagrant is not OS-agnostic, but very Unix-centric. By constraining ourselves to a single platform, we reduce time spent on OS and editor wars. We could have instead chosen a very Windows-centric environment, with Visual Studio tools instead of gcc--it's all gravy for the individual, who may run the Vagrant vm from Windows, Mac, or Linux.
+Notice that the development environment for Hello Vagrant is not OS-agnostic, but very Unix-centric. By constraining ourselves to a single platform, we reduce time spent on OS and editor wars. We could have chosen a very Windows-centric environment, with Visual Studio tools instead of gcc--it's all gravy for the individual, who may run the Vagrant vm from Windows, Mac, or Linux.
 
 As a bonus, Vagrant exposes the project files to the vm in a shared folder `/vagrant/`, not limiting the user to a specific text editor. If one team member wants to use Visual Studio and another wants to use Vim, Vagrant is happy to work with any and all of them.
 
