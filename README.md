@@ -2,7 +2,7 @@
 
 # ABOUT
 
-hello-vagrant presents a small demo project for newbies to Vagrant, a tool for shrink-wrapping and version controlling reusable, per-application environments. In the demo, users setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
+hello-vagrant presents a small demo project for newbies to Vagrant, a tool for managing per-application environments, shrink-wrapping them for deployment, and for each project contributor. In the demo, we setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
 
 # REQUIREMENTS
 
@@ -10,18 +10,78 @@ hello-vagrant presents a small demo project for newbies to Vagrant, a tool for s
 * [VirtualBox](https://www.virtualbox.org/)
 * Some familiarity with command line terminals
 
+# SCENARIO: WAKE UP CALL
+
+Management at YelloSoft Company & Company ("We make software. Ug.") has embarked on a trillion-dollar, bleeding edge project to develop the world's foremost Hello World app. Management isn't really sure what the app should do, besides print Hello..., but they know how they want the app to be made.
+
+> Project Requirements:
+>
+> The application shall say Hello (something).
+> All development work shall be version controlled.
+> All developer tools shall be documented. Developers may spend some time upfront provisioning tools, but new developers must be able to quickly acquiaint themselves with the project.
+> Quality control tests shall be approved by management.
+> When a new version passes the tests, the application shall be deployed on our Linux servers.
+> The application shall be written in C.
+
+The developers receive the project requirements and settle on some solutions to meet them.
+
+> Developer Manifesto:
+>
+> The application shall be written in an ANSI-compatible subset of C that compiles in gcc and passes a linter.
+> Indentation for application source code is two spaces.
+> Developers will be handed a laptop with install permissions for Vagrant and VirtualBox, and Vim, and a paper copy of [Learning the vi and Vim Editors](http://www.amazon.com/dp/059652983X/). Developer Bob will use Emacs and YelloSoft Co. & Co. will not fight him on this.
+
+Management needs Bob, and accepts the developer's technical details on the condition that the trillion-dollar app be deployed by close of business Monday (it's Thursday afternoon). Then management finally informs the testers that they'll soon be cracking on Hello app, because testing must be done by close of business Monday (but it's Thursday afternoon)!
+
+> Testing Procedures:
+>
+> The Hello application should feature a command line interface to support our automated Ruby testing system.
+> The build system should be scripted, we have no idea how to write C code or use gcc.
+> Developers should clearly document how to build and run Hello app.
+
+Management blinks at each other in confusion--command line what? But eventually understands that Hello $Trillion is going to have trouble being sufficiently bug-free for Joe $Dollar consumer, unless it's designed from the start to be highly testable. You can't have Hello World exploding the Internets or virussing your bytes, or whatever happens when you don't put enough developer butts in app-making seats.
+
+As the first light of dawn strikes YelloSoft Co. & Co. headquarters, the Ops team hears through the grapevine that a new, mission-critical Hello app will be shoved onto the production servers some time on Monday. The developers know we only have Ubuntu, right? And our servers aren't backwards compatible with Ruby 1.9? The Ops team rush to informally collect technical details from coworkers, writing down truths, hearsay, vagaries, and outright lies, and collecting them into a massive Ops specification broadcast with all the details Ops need to know in order to deploy enterprise-level applications onto live production systems.
+
+> Vim approved by management.
+
+# PROBLEM
+
+Software is incredibly complex. Large software projects are ridiculously complex, and whole faiths develop over the tiniest details--hard tabs or soft tabs; Emacs or Vim; Mac, Windows, or Linux--and managing all the details is patently wasteful. Decisions are required in order for the product to be meaningfully considered "software", but the particular choices often seem arbitrary.
+
+Hello app could be a record breaker, at least in terms of expenses. At worst, Hello app might be a massive business and technical failure, as all the parts, human and computer, fail to work together. How can we organize this chaos? How can we keep everyone on the same page?
+
+# SOLUTION
+
+Vagrant is free, open source software for managing computer environment configuration. The tools, packages, databases, user accounts, files and folders are used by Developers, Testers, and Operators can be documented in a tiny Vagrant virtual machine (vm), and everyone can refer to the Vagrant vm when in doubt. Project not compiling? Run it in Vagrant. Test suite not installing? Run it in Vagrant. Deployment overly complicated? Run it in Vagrant. Everyone syncs on the same technical configuration, without having to spend hours fussing with the configuration.
+
+You might have used vm's before, they're handy for running Linux inside of Windows, or Windows inside of Windows, or Linux inside of Windows inside of Mac. Vms isolate software into individual computational units, so that everything plays nicely on an economical set of computer hardware.
+
+Vagrant takes the vm idea one step further, encouring vm use for each application. This might sound like overkill for small programs like Hello app, but as apps and their resource needs grow, isolating them in vms is a good way to keep them maintainable and interoperable--if app A needs version X but app B needs version Y, that's okay. It's like they live in entirely different worlds.
+
 # DEMO
 
-Instruct Vagrant to download a base Ubuntu vm, which we will extend to become our Hello Vagrant custom vm. The download may take a little while, depending on the network connection.
+Step one is downloading a base vm. At YelloSoft Co. & Co., our applications will start with a layer of Ubuntu and build on top.
+
+Instruct Vagrant to download a base Ubuntu vm, Precise Pangolin, 64-bit. The download may take a little while, depending on the network connection.
 
     $ vagrant box add precise64 http://files.vagrantup.com/precise64.box
+
+Now our computer has a base Ubuntu box that we can reuse in a lot of projects.
+
+    $ ls ~/.vagrant.d/boxes/
+    precise64
+
+Instruct Vagrant to use this base for our Hello app project.
+
+    $ cd hello-vagrant/
     $ vagrant init precise64
 
 Boot the vm in the background.
 
     $ vagrant up
 
-By default, Vagrant enforces the provisioning configuration in `Vagrantfile` and `manifests/default.pp`. If we tweak the configuration, we can apply new settings while the vm is still running.
+Apply the latest configuration rules.
 
     $ vagrant provision
 
@@ -29,14 +89,31 @@ Connect to the vm in a terminal session.
 
     $ vagrant ssh
 
-Build and run the Hello Vagrant application.
+Developers can write, build, and run the Hello Vagrant application.
+
+    vagrant@precise64:/vagrant$ vi hello.c
+    :q
 
     vagrant@precise64:/vagrant$ make
     gcc -O2 -Wall -o hello hello.c
+    
     vagrant@precise64:/vagrant$ ./hello
     Hello Vagrant!
 
-Optionally, run a linter over the source code. For developers, this would help keep the code tidy.
+Developer Bob prefers another text editor, Emacs. He can edit the source code outside the vm, building and running the app inside the vm. He can use any text editor of his choice this way.
+
+    $ emacs hello.c
+    C-x C-c
+
+    $ vagrant ssh
+
+    vagrant@precise64:/vagrant$ make
+        gcc -O2 -Wall -o hello hello.c
+
+    vagrant@precise64:/vagrant$ ./hello
+        Hello Vagrant!
+
+Every now and then, the Developers have a meeting for code review, using a linter to assist in identifying sections of code to improve. So far, no warnings!
 
     vagrant@precise64:/vagrant$ make lint
     splint *.c *.h
@@ -46,8 +123,51 @@ Optionally, run a linter over the source code. For developers, this would help k
 
     Finished checking --- no warnings
 
-Optionally, run a test suite over the built application. For tests, this keeps the application functional.
+Bob likes to have lots of linter programs installed on his normal work computer, so he can code review outside the vm.
 
+    $ splint *.c *.h
+
+At 10 o'clock, several new Developers finish inprocessing at YelloSoft Co. & Co., and management reassigns the current team to getting the new members up to speed on developing Hello app ("and have them do a code review"). The Newbies are issued a hodgepodge of laptops, some Mac, some Windows or Linux. And installing splint on all of them would be a pain. Instead, Bob shows them [Vagrant](http://www.vagrantup.com/) + [VirtualBox](https://www.virtualbox.org/), and they boot up shiny new Hello app vms.
+
+    $ vagrant up
+    $ vagrant ssh
+    vagrant@precise64:/vagrant$ make lint
+    splint *.c *.h
+    Splint 3.1.2 --- 03 May 2009
+    
+    Cannot open file: *.h
+    
+    Finished checking --- no warnings
+
+Excellent work for your first day, Newbies! And they don't even know which tools they're using.
+
+Meanwhile, Testing is working on plain English descriptions of features to test.
+
+    $ cat features/print_hello_vagrant.feature
+    Feature: Print hello vagrant
+    
+      Scenario: Running hello vagrant
+        Given the program has finished
+        Then the output is hello vagrant
+
+Testers get the go-head from Management, and translate each requirement into little Ruby code.
+
+    $ cat features/step_definitions/steps.rb
+    Given(/^the program has finished$/) do
+      `make clean && make`
+      @cucumber = `./hello`
+    end
+
+    Then(/^the output is hello vagrant$/) do
+      @cucumber.chop.should == 'Hello Vagrant!'
+    end
+
+This handy [Cucumber](https://github.com/cucumber) test ensures the trillion-dollar Hello application meets quality control requirements: the app must say `Hello Vagrant!`
+
+Senior Quality Assurance Officer Jill still has Ruby 1.9 and Windows XP on her work computer, for supporting a legacy Goodbye World app she still maintains. She could use RVM to install Ruby 2.0 for Hello app, but neither RVM nor Cucumber work well in Windows. Fortunately, she's able to boot up and run Cucumber anyway, with Vagrant.
+
+    C:\> vagrant up
+    C:\> vagrant ssh
     vagrant@precise64:/vagrant$ cucumber
     Feature: Print hello vagrant
     
@@ -57,52 +177,27 @@ Optionally, run a test suite over the built application. For tests, this keeps t
     
     1 scenario (1 passed)
     2 steps (2 passed)
-    0m0.063s
+    0m0.227s
 
-Exit the vm terminal session.
+An hour later, the test no longer passes--one of the Newbies broke the code. Jill shows the Newbie the Cucumber test output. "Which versions of such and such are you using," asks the Developer. "Latest Cucumber, RubyGems, make, and gcc, as documented in the default.pp file," replies Jill. "Oops, I was running the app on my BSD laptop, didn't see the error." The Newbie boots the vm, runs the app *there*, sees the error, tweaks the code with Bob's [custom](https://github.com/mcandre/dotfiles/blob/master/.emacs) Emacs outside the vm, commits the source code, watches the app pass `cucumber` in the vm, and confirms with Jill that the app is stable again. In the evening, the app seems to work, Management's happy, and everyone leaves for the weekend.
+
+At the stroke of midnight, Monday, an priority advisory appears:
+
+> OpenSSH vulnerability found. Patched released, update ASAP.
+
+The Ops members on watch `apt-get update && apt-get upgrade`, legacy apps continue normal function.
+
+As the morning courses on, a manager walks by Newbie Developer, and sees the colorful text editor session, mistaking it for the app--"I want to demo that at Lunch." Manager walks away after dropping that bomb, concerned with how or whether to get sandwiches for the trillion-dollar Hello Lunch Demo.
+
+Newbie Developer talks to Bob. Bob says, "The *deployment* wasn't even scheduled until the afternoon! But we gotta demo." Newbie, Bob, Jill, and Ops Team scramble to make something, semi-functional, that shouts to all the world, `Hello Hello Hello!!!` for Management to see.
+
+Somehow, the OpenSSH update breaks Hello app, and then a series of carefully planned and highly technical activities occur in sequence ("magic happens").
+
+11:49:00 Ops team modifies `defaults.pp` to update to the new version, passes along the new envirnment to Testing.
+11:49:23 Testing runs `vagrant provision`, `vagrant ssh`, `cucumber`, sees the error, passes the error and the modified `defaults.pp` to Developers.
+11:59:23 Developers `vagrant provision`, `vagrant ssh`, code until `cucumber` passes, pushes branch `lunchdemo` to Testing.
+11:59:30 Testing reruns `cucumber` on the new application build, watches it pass, pushes to Ops.
+11:59:59 Ops sees the new tested build, pulls the new app to deployment, runs `vagrant up`.
+12:00:00 Sandwiches.
 
     vagrant@precise64:/vagrant$ exit
-
-Shutdown the vm.
-
-    $ vagrant halt
-
-Optionally, delete the Hello Vagrant vm and/or the base Ubuntu vm to save space.
-
-    $ vagrant destroy
-
-And/or:
-
-    $ vagrant box remove preceise64
-
-# DEBRIEF
-
-    vagrant@precise64:/vagrant$ tree
-    .
-    |-- features
-    |   |-- print_hello_world.feature
-    |   `-- step_definitions
-    |       `-- steps.rb
-    |-- hello
-    |-- hello.c
-    |-- Makefile
-    |-- manifests
-    |   `-- default.pp
-    |-- README.md
-    `-- Vagrantfile
-    
-    3 directories, 8 files
-
-`hello` - We begin with the application you want to develop and deploy (Hello Vagrant!) Sysadmins will want to know which operating system(s), software package(s), and special environment configurations are required in order to install and run the app. Testers will want a clean, standalone way to quickly setup and test the application against their battery of hundreds of stringent quality control tests (It should say "Hello Vagrant!").
-
-`hello.c` - Source code for Hello Vagrant app. Someone decided the app would be written in C, and someone must decide on a compiler and an operating system. For this project, we chose `gcc` and Ubuntu Linux, and require that all developers, testers, and sysadmins familiarize themselves with Linux (gcc- or Ubuntu-specific knowledge is a bonus skill).
-
-We could have decided on Visual Studio tools instead of `gcc`, and Windows instead of Linux. The wonder of Vagrant is that it works for many environments--you can use whatever you need inside the vm, and use whatever you like outside the vm, for your host computer. You can even use your favorite text editor on the project files, because Vagrant mirrors the project into the vm as a shared folder, `/vagrant`.
-
-`Makefile` - Build script for Hello Vagrant. This makes it easier for developers to compile the app, something they will be doing very often as they tweak the code. This also reduces the need for other team members to understand `gcc` and C--they just run `make` and the app builds. An optional build step for developers, `make lint`, is offered to keep the source code tidy.
-
-`manifests/default.pp` - Puppet script describing the specific environment required to run Hello Vagrant. In detail, this means `gcc`, `make`, and `splint`, all available in just two packages, `build-essential` and `splint`. We also create a symlink to `.bash_profile` to start the vm user shell in the Hello Vagrant project directory.
-
-`README.md` - Every project should have a README! Try to strike a balance between readability for general audiences and technical depth where necessary. How's the demo going so far?
-
-`Vagrantfile` - High level configuration for a vm made just for the Hello Vagrant app. None of the technical details above are particularly relevant to anyone; we just run `vagrant up` and do our jobs. But if we didn't use Vagrant, ever team member would have to individually learn the nitty gritty details of [yak shaving](http://www.urbandictionary.com/define.php?term=yak%20shaving), wasting many man-months.
