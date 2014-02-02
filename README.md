@@ -22,9 +22,11 @@ VM settings like memory size and [port forwarding](https://docs.vagrantup.com/v2
 
 `.gitignore` - A list of file patterns to exclude from version control. We exclude the `.vagrant/` directory that Vagrant uses for internal data, and the compiled unix executable `hello`.
 
-Notice that the development environment for Hello Vagrant is not OS-agnostic, but very Unix-centric. By constraining ourselves to a single platform, we reduce time spent on OS and editor wars. We could have chosen a very Windows-centric environment, with Visual Studio tools instead of gcc--it's all gravy for the individual, who may run the Vagrant vm from Windows, Mac, or Linux.
+## Environment Flexibility
 
-As a bonus, Vagrant mirrors project files into the vm as a shared folder `/vagrant/`. Users can write the source code files with any text editor outside of Vagrant, and build/test/deploy in Vagrant. If one team member likes Visual Studio and another likes Vim, that's fine.
+Notice that the development environment for Hello Vagrant is not OS-agnostic, but very Unix-centric. By constraining ourselves to a single platform, we reduce time spent on OS and editor wars. A `Vagrantfile` can help a large team synchronize on many environment details, in a format relatively computer- and human-friendly. We could have actually chosen a very Windows-centric environment, with Visual Studio tools instead of gcc--it's all gravy for the individual, who may run the Vagrant vm from Windows, Mac, or Linux.
+
+As a bonus, Vagrant mirrors project files into the vm as a shared folder, `/vagrant`. Users can write the source code files with any text editor outside of Vagrant, and build/test/deploy in Vagrant. If one team member likes Visual Studio and another likes Vim, that's fine.
 
 If OS-agnosticism is important in the product, Vagrant can help with that, too. Just write a `Vagrantfile` for each OS port of the application. You can either provide separate build scripts for each Vagrant environment, or write a universal build script and share it to both!
 
@@ -49,7 +51,7 @@ Boot the vm in the background.
 
     $ vagrant up
 
-Connect to the vm in a terminal session. Vagrant sets up a shared folder `/vagrant/` that appears to the vm just like the `hello-vagrant/` project folder.
+Connect to the vm in a terminal session. Vagrant sets up a shared folder `/vagrant` that appears to the vm just like the `hello-vagrant/` project folder.
 
     $ vagrant ssh
 
