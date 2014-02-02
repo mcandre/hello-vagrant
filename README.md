@@ -24,7 +24,7 @@ VM settings like memory size and [port forwarding](https://docs.vagrantup.com/v2
 
 Notice that the development environment for Hello Vagrant is not OS-agnostic, but very Unix-centric. By constraining ourselves to a single platform, we reduce time spent on OS and editor wars. We could have chosen a very Windows-centric environment, with Visual Studio tools instead of gcc--it's all gravy for the individual, who may run the Vagrant vm from Windows, Mac, or Linux.
 
-As a bonus, Vagrant exposes the project files to the vm in a shared folder `/vagrant/`, not limiting the user to a specific text editor. If one team member wants to use Visual Studio and another wants to use Vim, Vagrant is happy to work with any and all of them.
+As a bonus, Vagrant exposes the project files to the vm in a shared folder `/vagrant/`, so users can work with any text editor on the application code outside of Vagrant, and built/test/deploy in Vagrant. If one team member wants to use Visual Studio and another wants to use Vim, Vagrant is happy either way.
 
 If OS-agnosticism is important in the product, Vagrant can help organize that too. Just write a `Vagrantfile` for each OS port. And either provide separate build scripts for each Vagrant environment, or write an uber build script and share it to both!
 
