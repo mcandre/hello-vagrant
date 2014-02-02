@@ -1,5 +1,7 @@
 # hello-vagrant - Hello World for Vagrant
 
+![Vagrant logo](http://www.yellosoft.us/public/images/vagrant.png)
+
 # ABOUT
 
 hello-vagrant presents a small demo project for newbies to Vagrant, a tool for managing per-application environments, shrink-wrapping them for deployment, and for each project contributor. In the demo, we setup a virtual machine (vm) for working on Hello Vagrant, a pretend software application.
@@ -204,5 +206,7 @@ Somehow, the OpenSSH update breaks Hello app, and then a series of carefully pla
 11:59:59 Ops sees the new tested build, pulls the new app to deployment, runs `vagrant up`.
 
 12:00:00 Sandwiches.
+
+![sandwich resembling The Muppets' Dr. Teeth](https://raw2.github.com/mcandre/hello-vagrant/master/sandwich.jpg)
 
     vagrant@precise64:/vagrant$ exit
