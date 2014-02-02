@@ -1,5 +1,11 @@
 # User
 
+exec { "apt-update":
+    command => "/usr/bin/apt-get update"
+}
+
+Exec["apt-update"] -> Package <| |>
+
 file { "/home/vagrant/.bash_profile":
   ensure => link,
   target => "/vagrant/.bash_profile"
@@ -34,4 +40,8 @@ package { "cucumber":
 package { "rspec":
   ensure => present,
   provider => "gem"
+}
+
+package { "vim":
+  ensure => present
 }
