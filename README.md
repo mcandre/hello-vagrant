@@ -14,7 +14,9 @@ hello-vagrant presents a small demo project for newbies to Vagrant, a tool for m
 
 # SCENARIO: WAKE UP CALL
 
-Management at YelloSoft Company & Company ("We make software. Ug.") has embarked on a trillion-dollar, bleeding edge project to develop the world's foremost Hello World app. Management isn't really sure what the app should do, besides print Hello..., but they know how they want the app to be made.
+![YelloSoft: "We make software. Ug."](https://raw2.github.com/mcandre/hello-vagrant/master/yellosoft.png)
+
+Management at YelloSoft Company & Company has embarked on a trillion-dollar, bleeding edge project to develop the world's foremost Hello World app. Management isn't really sure what the app should do, besides print Hello..., but they know how they want the app to be made.
 
 > Project Requirements:
 >
