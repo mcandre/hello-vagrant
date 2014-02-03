@@ -38,12 +38,14 @@ class { "ruby":
 
 package { "cucumber":
   ensure => latest,
-  provider => "gem"
+  provider => "gem",
+  require => Package[[rubygems]]
 }
 
 package { "rspec":
   ensure => latest,
-  provider => "gem"
+  provider => "gem",
+  require => Package[[rubygems]]
 }
 
 # Ops
