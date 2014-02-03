@@ -51,6 +51,8 @@ As the first light of dawn strikes YelloSoft Co. & Co. headquarters, the Ops tea
 
 # PROBLEM
 
+![Now -> Monday. Not enough time](https://raw2.github.com/mcandre/hello-vagrant/master/project-plan.png)
+
 Software is incredibly complex. Large software projects are ridiculously complex, and whole faiths develop over the tiniest details--hard tabs or soft tabs; Emacs or Vim; Mac, Windows, or Linux--and managing all the details is patently wasteful. Decisions are required in order for the product to be meaningfully considered "software", but the particular choices often seem arbitrary.
 
 Hello app could be a record breaker, at least in terms of expenses. At worst, Hello app might be a massive business and technical failure, as all the parts, human and computer, fail to work together. How can we organize this chaos? How can we keep everyone on the same page?
