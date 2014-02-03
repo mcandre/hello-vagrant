@@ -18,34 +18,26 @@ file { "/home/vagrant/.bash_profile":
 
 # Development
 
-package { "build-essential":
-  ensure => latest
-}
-
-package { "tree":
-  ensure => latest
-}
-
-package { "splint":
+package { ["build-essential", "tree", "splint"]:
   ensure => latest
 }
 
 # Testing
 
-class { "ruby":
-  gems_version  => latest
+package { "rubygems":
+  ensure => latest
 }
 
-package { "cucumber":
+package { "bundler":
   ensure => latest,
   provider => "gem",
   require => Package[[rubygems]]
 }
 
-package { "rspec":
-  ensure => latest,
-  provider => "gem",
-  require => Package[[rubygems]]
+exec { "bundle":
+  command => "/usr/local/bin/bundle",
+  cwd => "/vagrant/",
+  subscribe => Package[[bundler]]
 }
 
 # Ops

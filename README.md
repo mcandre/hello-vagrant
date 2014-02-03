@@ -166,7 +166,7 @@ Testers get the go-head from Management, and translate each requirement into lit
 
 This handy [Cucumber](https://github.com/cucumber) test ensures the trillion-dollar Hello application meets quality control requirements: the app must say `Hello Vagrant!`
 
-Senior Quality Assurance Officer Jill still has Ruby 1.9 and Windows XP on her work computer, for supporting a legacy Goodbye World app she still maintains. She could use RVM to install Ruby 2.0 for Hello app, but neither RVM nor Cucumber work well in Windows. Fortunately, she's able to boot up and run Cucumber anyway, with Vagrant.
+Senior Quality Assurance Officer Jill still has Ruby 1.9 and Windows XP on her work computer, for supporting a legacy Goodbye World app she still maintains. She could use RVM to install Ruby 2.0 for Hello app, but neither RVM nor Cucumber work well in Windows. What's worse, she prefers to manage her Ruby dependencies with [Bundler](http://bundler.io/), rather than leaving it to Ops to handle the details. Fortunately, she's able to boot up and run Cucumber anyway, with a collection of tiny configuration scripts: Vagrant to Puppet to Bundler, that keep everything running smoothly.
 
     C:\> vagrant up
     C:\> vagrant ssh
