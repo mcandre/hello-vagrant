@@ -1,10 +1,14 @@
 # User
 
+## Update apt before installing any packages
+
 exec { "apt-update":
-    command => "/usr/bin/apt-get update"
+  command => "/usr/bin/apt-get update"
 }
 
 Exec["apt-update"] -> Package <| |>
+
+## Link bash profile
 
 file { "/home/vagrant/.bash_profile":
   ensure => link,
@@ -15,33 +19,35 @@ file { "/home/vagrant/.bash_profile":
 # Development
 
 package { "build-essential":
-  ensure => present
+  ensure => latest
 }
 
 package { "tree":
-  ensure => present
+  ensure => latest
 }
 
 package { "splint":
-  ensure => present
+  ensure => latest
 }
 
 # Testing
 
 class { "ruby":
-  gems_version  => 'latest'
+  gems_version  => latest
 }
 
 package { "cucumber":
-  ensure => present,
+  ensure => latest,
   provider => "gem"
 }
 
 package { "rspec":
-  ensure => present,
+  ensure => latest,
   provider => "gem"
 }
 
+# Ops
+
 package { "vim":
-  ensure => present
+  ensure => latest
 }
