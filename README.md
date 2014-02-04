@@ -211,7 +211,7 @@ Somehow, the OpenSSH update breaks Hello app, and then a series of carefully pla
 
 11:59:59 Ops sees the new tested build, pulls the new app to deployment, runs `vagrant up`.
 
-12:00:00 Sandwiches.
+12:00:00 Sandwiches!
 
 ![sandwich resembling The Muppets' Dr. Teeth](https://raw2.github.com/mcandre/hello-vagrant/master/sandwich.jpg)
 
