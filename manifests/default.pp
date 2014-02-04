@@ -15,7 +15,6 @@ file { "/home/vagrant/.bash_profile":
   target => "/vagrant/.bash_profile"
 }
 
-
 # Development
 
 package { ["build-essential", "tree", "splint"]:
