@@ -57,7 +57,13 @@ Software is incredibly complex. Large software projects are ridiculously complex
 
 Hello app could be a record breaker, at least in terms of expenses. At worst, Hello app might be a massive business and technical failure, as all the parts, human and computer, fail to work together. How can we organize this chaos? How can we keep everyone on the same page?
 
-# SOLUTION
+# SOLUTION: VAGRANT!
+
+![old vagrant](https://raw2.github.com/mcandre/hello-vagrant/master/old-vagrant.png)
+
+Er.
+
+![new vagrant](https://raw2.github.com/mcandre/hello-vagrant/master/new-vagrant.png)
 
 Vagrant is free, open source software for managing computer environment configuration. The tools, packages, databases, user accounts, files and folders are used by Developers, Testers, and Operators can be documented in a tiny Vagrant virtual machine (vm), and everyone can refer to the Vagrant vm when in doubt. Project not compiling? Run it in Vagrant. Test suite not installing? Run it in Vagrant. Deployment overly complicated? Run it in Vagrant. Everyone syncs on the same technical configuration, without having to spend hours fussing with the configuration.
 
