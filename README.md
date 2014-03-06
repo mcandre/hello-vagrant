@@ -22,7 +22,7 @@ Management at YelloSoft Company & Company has embarked on a trillion-dollar, ble
 >
 > The application shall say Hello (something).
 > All development work shall be version controlled.
-> All developer tools shall be documented. Developers may spend some time upfront provisioning tools, but new developers must be able to quickly acquiaint themselves with the project.
+> All developer tools shall be documented. Developers may spend some time upfront provisioning tools, but new developers must be able to quickly acquaint themselves with the project.
 > Quality control tests shall be approved by management.
 > When a new version passes the tests, the application shall be deployed on our Linux servers.
 > The application shall be written in C.
@@ -63,9 +63,9 @@ Hello app could be a record breaker, at least in terms of expenses. At worst, He
 
 Vagrant is free, open source software for managing computer environment configuration. The tools, packages, databases, user accounts, files and folders are used by Developers, Testers, and Operators can be documented in a tiny Vagrant virtual machine (vm), and everyone can refer to the Vagrant vm when in doubt. Project not compiling? Run it in Vagrant. Test suite not installing? Run it in Vagrant. Deployment overly complicated? Run it in Vagrant. Everyone syncs on the same technical configuration, without having to spend hours fussing with the configuration.
 
-You might have used vm's before, they're handy for running Linux inside of Windows, or Windows inside of Windows, or Linux inside of Windows inside of Mac. Vms isolate software into individual computational units, so that everything plays nicely on an economical set of computer hardware.
+You might have used vm's before, they're handy for running Linux inside of Windows, or Windows inside of Windows, or Linux inside of Windows inside of Mac. Vm's isolate software into individual computational units, so that everything plays nicely on an economical set of computer hardware.
 
-Vagrant takes the vm idea one step further, encouring vm use for each application. This might sound like overkill for small programs like Hello app, but as apps and their resource needs grow, isolating them in vms is a good way to keep them maintainable and interoperable--if app A needs version X but app B needs version Y, that's okay. It's like they live in entirely different worlds.
+Vagrant takes the vm idea one step further, encouraging vm use for each application. This might sound like overkill for small programs like Hello app, but as apps and their resource needs grow, isolating them in vm's is a good way to keep them maintainable and interoperable--if app A needs version X but app B needs version Y, that's okay. It's like they live in entirely different worlds.
 
 # DEMO BY LUNCH
 
@@ -135,7 +135,7 @@ Bob likes to have lots of linter programs installed on his normal work computer,
 
     $ splint *.c *.h
 
-At 10 o'clock, several new Developers finish inprocessing at YelloSoft Co. & Co., and management reassigns the current team to getting the new members up to speed on developing Hello app ("and have them do a code review"). The Newbies are issued a hodgepodge of laptops, some Mac, some Windows or Linux. And installing splint on all of them would be a pain. Instead, Bob shows them [Vagrant](http://www.vagrantup.com/) + [VirtualBox](https://www.virtualbox.org/), and they boot up shiny new Hello app vms.
+At 10 o'clock, several new Developers finish inprocessing at YelloSoft Co. & Co., and management reassigns the current team to getting the new members up to speed on developing Hello app ("and have them do a code review"). The Newbies are issued a hodgepodge of laptops, some Mac, some Windows or Linux. And installing splint on all of them would be a pain. Instead, Bob shows them [Vagrant](http://www.vagrantup.com/) + [VirtualBox](https://www.virtualbox.org/), and they boot up shiny new Hello app vm's.
 
     $ vagrant up
     $ vagrant ssh
@@ -201,7 +201,7 @@ Newbie Developer talks to Bob. Bob says, "The *deployment* wasn't even scheduled
 
 Somehow, the OpenSSH update breaks Hello app, and then a series of carefully planned and highly technical activities occur in sequence ("magic happens").
 
-11:49:00 Ops team modifies `defaults.pp` to update to the new version, passes along the new envirnment to Testing.
+11:49:00 Ops team modifies `defaults.pp` to update to the new version, passes along the new environment to Testing.
 
 11:49:23 Testing runs `vagrant provision`, `vagrant ssh`, `cucumber`, sees the error, passes the error and the modified `defaults.pp` to Developers.
 
@@ -213,6 +213,6 @@ Somehow, the OpenSSH update breaks Hello app, and then a series of carefully pla
 
 12:00:00 Sandwiches!
 
-![sandwich resembling The Muppets' Dr. Teeth](https://raw2.github.com/mcandre/hello-vagrant/master/sandwich.jpg)
+![sandwich resembling The Muppet's' Dr. Teeth](https://raw2.github.com/mcandre/hello-vagrant/master/sandwich.jpg)
 
     vagrant@precise64:/vagrant$ exit
