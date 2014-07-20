@@ -10,7 +10,7 @@ splint:
 	find . -type f -name '*.[ch]' -exec splint {} \;
 
 puppet-lint:
-	puppet-lint **/*.pp
+	find . -type f -name '*.pp' -exec puppet-lint {} \;
 
 lint: splint puppet-lint
 
