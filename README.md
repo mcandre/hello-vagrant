@@ -124,28 +124,26 @@ Developer Bob prefers another text editor, Emacs. He can edit the source code ou
 Every now and then, the Developers have a meeting for code review, using a linter to assist in identifying sections of code to improve. So far, no warnings!
 
     vagrant@precise64:/vagrant$ make lint
-    splint *.c *.h
-    Splint 3.1.2 --- 03 May 2009
-
-    Cannot open file: *.h
-
+    find . -type f -name '*.[ch]' -exec splint {} \;
+    Splint 3.1.2 --- 14 Oct 2013
+    
     Finished checking --- no warnings
+    puppet-lint **/*.pp
 
 Bob likes to have lots of linter programs installed on his normal work computer, so he can code review outside the vm.
 
-    $ splint *.c *.h
+    $ find . -type f -name '*.[ch]' -exec splint {} \;
 
 At 10 o'clock, several new Developers finish inprocessing at YelloSoft Co. & Co., and management reassigns the current team to getting the new members up to speed on developing Hello app ("and have them do a code review"). The Newbies are issued a hodgepodge of laptops, some Mac, some Windows or Linux. And installing splint on all of them would be a pain. Instead, Bob shows them [Vagrant](http://www.vagrantup.com/) + [VirtualBox](https://www.virtualbox.org/), and they boot up shiny new Hello app vm's.
 
     $ vagrant up
     $ vagrant ssh
     vagrant@precise64:/vagrant$ make lint
-    splint *.c *.h
-    Splint 3.1.2 --- 03 May 2009
-    
-    Cannot open file: *.h
+    find . -type f -name '*.[ch]' -exec splint {} \;
+    Splint 3.1.2 --- 14 Oct 2013
     
     Finished checking --- no warnings
+    puppet-lint **/*.pp
 
 Excellent work for your first day, Newbies! And they don't even know which tools they're using.
 

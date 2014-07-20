@@ -6,8 +6,13 @@ all: hello
 hello: hello.c
 	$(CC) $(FLAGS) -o hello hello.c
 
-lint:
-	splint *.c *.h
+splint:
+	find . -type f -name '*.[ch]' -exec splint {} \;
+
+puppet-lint:
+	puppet-lint **/*.pp
+
+lint: splint puppet-lint
 
 clean:
 	-rm hello
