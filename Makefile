@@ -1,10 +1,13 @@
 CC=gcc
 FLAGS=-O2 -Wall
 
-all: hello
+BIN=bin/hello
 
-hello: hello.c
-	$(CC) $(FLAGS) -o hello hello.c
+all: $(BIN)
+
+$(BIN): hello.c
+	mkdir -p bin/
+	$(CC) $(FLAGS) -o $(BIN) hello.c
 
 splint:
 	find . -type f -name '*.[ch]' -exec splint {} \;
@@ -14,5 +17,8 @@ puppet-lint:
 
 lint: splint puppet-lint
 
+cucumber:
+	bundle exec cucumber
+
 clean:
-	-rm hello
+	-rm -rf bin/

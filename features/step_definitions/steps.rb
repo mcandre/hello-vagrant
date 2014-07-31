@@ -1,6 +1,6 @@
 Given(/^the program has finished$/) do
   `make clean && make`
-  @cucumber = `./hello`
+  @cucumber = `./bin/hello`
 end
 
 Then(/^the output is hello vagrant$/) do

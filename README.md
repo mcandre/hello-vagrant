@@ -103,9 +103,9 @@ Developers can write, build, and run the Hello Vagrant application.
     :q
 
     vagrant@precise64:/vagrant$ make
-    gcc -O2 -Wall -o hello hello.c
+    gcc -O2 -Wall -o bin/hello hello.c
     
-    vagrant@precise64:/vagrant$ ./hello
+    vagrant@precise64:/vagrant$ ./bin/hello
     Hello Vagrant!
 
 Developer Bob prefers another text editor, Emacs. He can edit the source code outside the vm, building and running the app inside the vm, using Vagrant's automatic mirroring of project files into the vm as a shared folder, `/vagrant`. He can use any text editor of his choice this way! Which is good, because the Management likes to poke around the code in Notepad for off the cuff "Assurance" inspections against evil Developers.
@@ -116,10 +116,10 @@ Developer Bob prefers another text editor, Emacs. He can edit the source code ou
     $ vagrant ssh
 
     vagrant@precise64:/vagrant$ make
-        gcc -O2 -Wall -o hello hello.c
+    gcc -O2 -Wall -o bin/hello hello.c
 
-    vagrant@precise64:/vagrant$ ./hello
-        Hello Vagrant!
+    vagrant@precise64:/vagrant$ ./bin/hello
+    Hello Vagrant!
 
 Every now and then, the Developers have a meeting for code review, using a linter to assist in identifying sections of code to improve. So far, no warnings!
 
@@ -161,7 +161,7 @@ Testers get the go-head from Management, and translate each requirement into lit
     $ cat features/step_definitions/steps.rb
     Given(/^the program has finished$/) do
       `make clean && make`
-      @cucumber = `./hello`
+      @cucumber = `./bin/hello`
     end
 
     Then(/^the output is hello vagrant$/) do
@@ -174,7 +174,7 @@ Senior Quality Assurance Officer Jill still has Ruby 1.9 and Windows XP on her w
 
     C:\> vagrant up
     C:\> vagrant ssh
-    vagrant@precise64:/vagrant$ cucumber
+    vagrant@precise64:/vagrant$ make cucumber
     Feature: Print hello vagrant
     
       Scenario: Running hello vagrant    # features/print_hello_vagrant.feature:3
