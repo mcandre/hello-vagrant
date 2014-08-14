@@ -4,5 +4,5 @@ Given(/^the program has finished$/) do
 end
 
 Then(/^the output is hello vagrant$/) do
-  @cucumber.chop.should == 'Hello Vagrant!'
+  expect(@cucumber.chop).to eq('Hello Vagrant!')
 end
