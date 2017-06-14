@@ -15,7 +15,10 @@ splint:
 puppet-lint:
 	find . -type f -name '*.pp' -exec puppet-lint {} \;
 
-lint: splint puppet-lint
+editorconfig:
+	flcl . | xargs -n 100 editorconfig-cli check
+
+lint: splint puppet-lint editorconfig
 
 cucumber:
 	bundle exec cucumber

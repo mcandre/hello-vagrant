@@ -12,6 +12,11 @@ hello-vagrant presents a small demo project for newbies to Vagrant, a tool for m
 * [VirtualBox](https://www.virtualbox.org/)
 * Some familiarity with command line terminals
 
+## Optional
+
+* [editorconfig-cli](https://github.com/amyboyd/editorconfig-cli) (e.g. `go get github.com/amyboyd/editorconfig-cli`)
+* [flcl](https://github.com/mcandre/flcl) (e.g. `go get github.com/mcandre/flcl/...`)
+
 # SCENARIO: WAKE UP CALL
 
 ![YelloSoft: "We make software. Ug."](https://raw2.github.com/mcandre/hello-vagrant/master/yellosoft.png)
@@ -104,7 +109,7 @@ Developers can write, build, and run the Hello Vagrant application.
 
     vagrant@precise64:/vagrant$ make
     gcc -O2 -Wall -o bin/hello hello.c
-    
+
     vagrant@precise64:/vagrant$ ./bin/hello
     Hello Vagrant!
 
@@ -126,7 +131,7 @@ Every now and then, the Developers have a meeting for code review, using a linte
     vagrant@precise64:/vagrant$ make lint
     find . -type f -name '*.[ch]' -exec splint {} \;
     Splint 3.1.2 --- 14 Oct 2013
-    
+
     Finished checking --- no warnings
     puppet-lint **/*.pp
 
@@ -141,7 +146,7 @@ At 10 o'clock, several new Developers finish inprocessing at YelloSoft Co. & Co.
     vagrant@precise64:/vagrant$ make lint
     find . -type f -name '*.[ch]' -exec splint {} \;
     Splint 3.1.2 --- 14 Oct 2013
-    
+
     Finished checking --- no warnings
     puppet-lint **/*.pp
 
@@ -151,7 +156,7 @@ Meanwhile, Testing is working on plain English descriptions of features to test.
 
     $ cat features/print_hello_vagrant.feature
     Feature: Print hello vagrant
-    
+
       Scenario: Running hello vagrant
         Given the program has finished
         Then the output is hello vagrant
@@ -176,11 +181,11 @@ Senior Quality Assurance Officer Jill still has Ruby 1.9 and Windows XP on her w
     C:\> vagrant ssh
     vagrant@precise64:/vagrant$ make cucumber
     Feature: Print hello vagrant
-    
+
       Scenario: Running hello vagrant    # features/print_hello_vagrant.feature:3
         Given the program has finished   # features/step_definitions/steps.rb:1
         Then the output is hello vagrant # features/step_definitions/steps.rb:6
-    
+
     1 scenario (1 passed)
     2 steps (2 passed)
     0m0.227s
