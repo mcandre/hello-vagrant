@@ -6,22 +6,22 @@ BIN=bin/hello
 all: $(BIN)
 
 $(BIN): hello.c
-	mkdir -p bin/
-	$(CC) $(FLAGS) -o $(BIN) hello.c
+	@mkdir -p bin
+	@$(CC) $(FLAGS) -o $(BIN) hello.c
 
 splint:
-	find . -type f -name '*.[ch]' -exec splint {} \;
+	@find . -type f -name '*.[ch]' -exec splint {} \;
 
 puppet-lint:
-	find . -type f -name '*.pp' -exec puppet-lint {} \;
+	@find . -type f -name '*.pp' -exec puppet-lint {} \;
 
 editorconfig:
-	flcl . | xargs -n 100 editorconfig-cli check
+	@git ls-files -z | grep -av patch | xargs -0 -r -n 100 $(shell npm bin)/eclint check
 
 lint: splint puppet-lint editorconfig
 
 cucumber:
-	bundle exec cucumber
+	@bundle exec cucumber
 
 clean:
-	-rm -rf bin/
+	-rm -rf bin
